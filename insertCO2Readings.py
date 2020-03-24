@@ -1,4 +1,5 @@
 import pyodbc
+print(pyodbc)
 server = 'e013988g.database.windows.net'
 database = 'lukefyp'
 username = 'e013988g'
