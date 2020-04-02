@@ -23,10 +23,10 @@ uni_data = (uni_data-uni_train_mean)/uni_train_std
 univariate_past_history = 20
 univariate_future_target = 0
 
-x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
+x_train_uni, y_train_uni = self.univariate_data(uni_data, 0, TRAIN_SPLIT,
                                            univariate_past_history,
                                            univariate_future_target)
-x_val_uni, y_val_uni = univariate_data(uni_data, TRAIN_SPLIT, None,
+x_val_uni, y_val_uni = self.univariate_data(uni_data, TRAIN_SPLIT, None,
                                        univariate_past_history,
                                        univariate_future_target)
 print ('Single window of past history')
