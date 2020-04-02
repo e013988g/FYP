@@ -74,6 +74,7 @@ print ('Single window of past history')
 print (x_train_uni[0])
 print ('\n Target temperature to predict')
 print (y_train_uni[0])
+show_plot([x_train_uni[0], y_train_uni[0]], 0, 'Sample Example')
 
 BATCH_SIZE = 256
 BUFFER_SIZE = 10000
