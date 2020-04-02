@@ -11,7 +11,7 @@ csv_path, _ = os.path.splitext(zip_path)
 df = pd.read_csv(csv_path)
 df.head()
 TRAIN_SPLIT = 300000
-tf.random.set_seed(13)
+tf.random.set_random_seed(13)
 uni_data = df['T (degC)']
 uni_data.index = df['Date Time']
 uni_data.head()
