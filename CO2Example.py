@@ -34,10 +34,10 @@ try:
             if COPerc > 70:
                 if COPreviousTriggeredState == False:
                     message = COText.createClientMessage()
-                    previousTriggeredState = True
+                COpreviousTriggeredState = True
             
             if COPerc <= 70:
-                previousTriggeredState = False    
+                COpreviousTriggeredState = False    
 except:
     e = sys.exc_info()[0]
     print("error: %s" % e)
