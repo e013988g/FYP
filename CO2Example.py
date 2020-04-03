@@ -31,12 +31,12 @@ try:
             if ((CO2Perc["SMOKE"]) * 20000) <= 1000:
                 previousTriggeredState = False
             
-            if COPerc > 70:
+            if COPerc["CO"] > 70:
                 if COPreviousTriggeredState == False:
                     message = COText.createClientMessage()
                 COpreviousTriggeredState = True
             
-            if COPerc <= 70:
+            if COPerc["CO"] <= 70:
                 COpreviousTriggeredState = False    
 except:
     e = sys.exc_info()[0]
