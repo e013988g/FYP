@@ -23,21 +23,21 @@ try:
             sys.stdout.flush()
             time.sleep(10)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
-                if previousTriggeredState == False:
+                if PreviousTriggeredState == False:
                     message = CO2Text.createClientMessage()
                     email = sendCarbonDioxideEmail.createEmail()
-                previousTriggeredState = True
+                PreviousTriggeredState = True
             
             if ((CO2Perc["SMOKE"]) * 20000) <= 1000:
-                previousTriggeredState = False
+                PreviousTriggeredState = False
             
             if COPerc["CO"] > 70:
                 if COPreviousTriggeredState == False:
                     message = COText.createClientMessage()
-                COpreviousTriggeredState = True
+                COPreviousTriggeredState = True
             
             if COPerc["CO"] <= 70:
-                COpreviousTriggeredState = False    
+                COPreviousTriggeredState = False    
 except:
     e = sys.exc_info()[0]
     print("error: %s" % e)
