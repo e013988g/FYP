@@ -21,7 +21,7 @@ try:
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
             sys.stdout.flush()
-            time.sleep(0.1)
+            time.sleep(10)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if previousTriggeredState == False:
                     message = CO2Text.createClientMessage()
