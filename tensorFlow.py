@@ -93,3 +93,4 @@ simple_lstm_model = tf.keras.models.Sequential([
 simple_lstm_model.compile(optimizer='adam', loss='mae')
 for x, y in val_univariate.take(1):
     print(simple_lstm_model.predict(x).shape)
+    tf.reset_default_graph()
