@@ -89,8 +89,8 @@ simple_lstm_model = tf.keras.models.Sequential([
     tf.keras.layers.LSTM(8, input_shape=x_train_uni.shape[-2:]),
     tf.keras.layers.Dense(1)
 ])
+tf.keras.clear_session()
 
 simple_lstm_model.compile(optimizer='adam', loss='mae')
 for x, y in val_univariate.take(1):
     print(simple_lstm_model.predict(x).shape)
-    tf.reset_default_graph()
