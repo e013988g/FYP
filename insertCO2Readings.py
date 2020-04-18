@@ -1,14 +1,11 @@
 import pyodbc
-print(pyodbc.drivers())
-server = 'e013988g.database.windows.net'
-database = 'lukefyp'
-username = 'e013988g'
-password = 'lukefyp2020!'
-driver= '{ODBC Driver 17 for SQL Server}'
-cnxn = pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password)
-cursor = cnxn.cursor()
-cursor.execute("SELECT TOP 20 FROM Device_Details")
-row = cursor.fetchone()
-while row:
-    print (str(row[0]) + " " + str(row[1]))
-    row = cursor.fetchone()
+conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
+cursor = conn.cursor()
+sql_text= 'SELECT * FROM Device_Details'
+cursor.execute(sql_text)
+result=cursor.fetchall()
+for row in result:
+       p=row[1] 
+       q=row[2]
+       print p
+       print q
