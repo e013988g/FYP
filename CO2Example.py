@@ -3,6 +3,7 @@ from mqCO import *
 from sendCO2Text import *
 from sendCO2Email import *
 from sendCOText import *
+from sendDataToDb import *
 import sys, time
 
 try:
@@ -11,16 +12,21 @@ try:
     COPreviousTriggeredState = False
     mqCO2 = MQCO2();
     mqCO = MQCO();
+    sendDataToDb = insertReading();
     CO2Text = sendCO2Text();
     COText = sendCOText();
     sendCarbonDioxideEmail = sendCO2Email();
+    
     while True:
             CO2Perc = mqCO2.MQPercentage()
-            COPerc = mqCO.MQPercentage()                    
+            COPerc = mqCO.MQPercentage()
+            insertReading.insertCO2Reading(CO2Perc["SMOKE"])
+            insertReading.insertCOReading(CO2Perc["CO"])
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
             sys.stdout.flush()
+            
             time.sleep(10)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if PreviousTriggeredState == False:
