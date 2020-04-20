@@ -21,7 +21,7 @@ try:
             CO2Perc = mqCO2.MQPercentage()
             COPerc = mqCO.MQPercentage()
             sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
-            #sendDataToDb.insertCOReading(CO2Perc["CO"])
+            sendDataToDb.insertCOReading(CO2Perc["CO"])
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
