@@ -3,7 +3,7 @@ from mqCO import *
 from sendCO2Text import *
 from sendCO2Email import *
 from sendCOText import *
-from sendDataToDb import *
+from sendDataToDB import *
 import sys, time
 
 try:
@@ -20,8 +20,8 @@ try:
     while True:
             CO2Perc = mqCO2.MQPercentage()
             COPerc = mqCO.MQPercentage()
-            insertReading.insertCO2Reading(CO2Perc["SMOKE"])
-            insertReading.insertCOReading(CO2Perc["CO"])
+            sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
+            sendDataToDb.insertCOReading(CO2Perc["CO"])
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
