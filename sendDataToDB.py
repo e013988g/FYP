@@ -6,7 +6,7 @@ class insertReading():
         cursor = conn.cursor()
         now = datetime.datetime.now()
         now = now.strftime("%Y-%m-%d %H:%M:%S.%s.%f")[:-3]
-        sql_text= "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now ")"
+        sql_text= "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now  + ")"
         cursor.execute(sql_text)
         
     def insertCOReading(ReadingPPM):
@@ -14,7 +14,7 @@ class insertReading():
         cursor = conn.cursor()
         now = datetime.datetime.now()
         now = now.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
-        sql_text= "INSERT INTO CO_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now ")"
+        sql_text= "INSERT INTO CO_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now + ")"
         cursor.execute(sql_text)
 
     
