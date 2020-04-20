@@ -12,6 +12,7 @@ class insertReading():
             sql_text = "INSERT INTO CO2_Readings (DeviceID, ReadingPPM) VALUES (1," + str(ReadingPPM) + ")"
             print(sql_text)
             cursor.execute(sql_text)
+            conn.commit()
             conn.close()
         except:
             e = sys.exc_info()[1]
