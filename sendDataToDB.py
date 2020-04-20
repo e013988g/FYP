@@ -1,5 +1,6 @@
 import pyodbc
 import datetime
+
 class insertReading():
     def insertCO2Reading(ReadingPPM):
         try:
@@ -9,6 +10,9 @@ class insertReading():
             now = now.strftime("%Y-%m-%d %H:%M:%S.%s.%f")[:-3]
             sql_text= "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now  + ")"
             cursor.execute(sql_text)
+            conn.commit()
+            cursor.close()
+            conn.close()
             print("affected rows = {}".format(cursor.rowcount))
         except:
             e = sys.exc_info()[0]
@@ -21,8 +25,11 @@ class insertReading():
             cursor = conn.cursor()
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S.%s.%f")[:-3]
-            sql_text= "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now  + ")"
+            sql_text= "INSERT INTO CO_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + ReadingPPM + "," + now  + ")"
             cursor.execute(sql_text)
+            conn.commit()
+            cursor.close()
+            conn.close()
             print("affected rows = {}".format(cursor.rowcount))
         except:
             e = sys.exc_info()[0]
