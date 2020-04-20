@@ -1,5 +1,6 @@
 import pyodbc
 import datetime
+import sys
 
 class insertReading():
     def insertCO2Reading(self, ReadingPPM):
