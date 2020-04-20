@@ -9,7 +9,7 @@ class insertReading():
             cursor = conn.cursor()
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S.%f")[:-3]
-            sql_text = "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + str(ReadingPPM * 20000) + "," + now + ")"
+            sql_text = "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + str(ReadingPPM * 20000) + "," + "2020-04-20 02:59:54.020" + ")"
             print(sql_text)
             cursor.execute(sql_text)
             conn.commit()
