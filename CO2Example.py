@@ -20,7 +20,7 @@ try:
     while True:
             CO2Perc = mqCO2.MQPercentage()
             COPerc = mqCO.MQPercentage()
-            sendDataToDb.insertCO2Reading()
+            sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
             #sendDataToDb.insertCOReading(CO2Perc["CO"])
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
