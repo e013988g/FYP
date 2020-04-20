@@ -45,5 +45,5 @@ try:
             if COPerc["CO"] <= 70:
                 COPreviousTriggeredState = False    
 except:
-    e = sys.exc_info()[0]
+    e = sys.exc_info()
     print("error: %s" % e)
