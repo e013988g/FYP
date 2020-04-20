@@ -10,6 +10,7 @@ class insertReading():
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S.%s")
             sql_text = "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + str(ReadingPPM) + "," + str(now)  + ")"
+            print(sql_text)
             cursor.execute(sql_text)
             conn.close()
         except:
