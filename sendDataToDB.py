@@ -8,10 +8,10 @@ class insertReading():
             cursor = conn.cursor()
             now = datetime.datetime.now()
             now = now.strftime("%Y-%m-%d %H:%M:%S.%s.%f")[:-3]
-            sql_text= "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + "400.55" + "," + now  + ")"
+            sql_text = "INSERT INTO CO2_Readings (DeviceID, ReadingPPM, DateRegistered) VALUES (1," + "400.55" + "," + now  + ")"
             cursor.execute(sql_text)
             conn.close()
         except:
-            e = sys.exc_info()[0]
+            e = sys.exc_info()[1]
             print("error: %s" % e)
             
