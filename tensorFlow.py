@@ -39,7 +39,7 @@ def univariate_data(dataset, start_index, end_index, history_size, target_size):
         data.append(np.reshape(dataset[indices], (history_size, 1)))
         labels.append(dataset[i + target_size])
     
-    print(data)
+    print(np.array(data))
         
     return np.array(data), np.array(labels)
 
