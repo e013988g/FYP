@@ -80,7 +80,7 @@ uni_data = uni_data.values
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
-univariate_past_history = 6
+univariate_past_history = 5
 univariate_future_target = 0
 
 x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
