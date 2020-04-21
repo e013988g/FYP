@@ -65,6 +65,9 @@ def show_plot(plot_data, delta, title):
   plt.xlabel('Time-Step')
   return plt
 
+def baseline(history):
+  return np.mean(history)
+
 mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
@@ -92,5 +95,5 @@ print ('Single window of past history')
 print (x_train_uni[0])
 print ('\n Target temperature to predict')
 print (y_train_uni[0])
-show_plot([x_train_uni[0], y_train_uni[0]], 0, 'Sample Example')
-plt.show()
+show_plot([x_train_uni[0], y_train_uni[0], baseline(x_train_uni[0])], 0,
+           'Baseline Prediction Example')plt.show()
