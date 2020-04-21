@@ -68,7 +68,7 @@ def show_plot(plot_data, delta, title):
 mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
-TRAIN_SPLIT = 2
+TRAIN_SPLIT = 10
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
@@ -78,10 +78,10 @@ uni_data = uni_data.values
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
-univariate_past_history = 3
+univariate_past_history = 0
 univariate_future_target = 0
 
-x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
+x_train_uni, y_train_uni = univariate_data(uni_data, 0, 5,
                                            univariate_past_history,
                                            univariate_future_target)
 x_val_uni, y_val_uni = univariate_data(uni_data, TRAIN_SPLIT, None,
