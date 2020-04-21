@@ -3,7 +3,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import python3-pandas as pd
+import pandas as pd
 
 def univariate_data(dataset, start_index, end_index, history_size, target_size):
     data = []
