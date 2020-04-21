@@ -5,6 +5,7 @@ import numpy as np
 import os
 import pandas as pd
 import json
+import pyodbc
 
 def getRecentDatabaseData():
     line_items = []
