@@ -69,12 +69,11 @@ def show_plot(plot_data, delta, title):
 mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
-print(df)
 TRAIN_SPLIT = 2
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
-uni_data.head()
+print(uni_data.head())
 uni_data.plot(subplots=True)
 uni_data = uni_data.values
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
