@@ -73,9 +73,10 @@ TRAIN_SPLIT = 2
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
-print(uni_data.head())
+uni_data.head()
 uni_data.plot(subplots=True)
 uni_data = uni_data.values
+print(uni_data)
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
