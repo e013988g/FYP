@@ -38,7 +38,8 @@ def univariate_data(dataset, start_index, end_index, history_size, target_size):
         indices = range(i - history_size, i)# Reshape data from(history_size, ) to(history_size, 1)
         data.append(np.reshape(dataset[indices], (history_size, 1)))
         labels.append(dataset[i + target_size])
-        
+    
+    print(data)
         
     return np.array(data), np.array(labels)
 
@@ -79,7 +80,6 @@ uni_data = uni_data.values
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
-print(uni_train_std)
 univariate_past_history = 3
 univariate_future_target = 0
 
