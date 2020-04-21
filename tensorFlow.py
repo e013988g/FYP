@@ -38,7 +38,7 @@ def univariate_data(dataset, start_index, end_index, history_size, target_size):
         indices = range(i - history_size, i)# Reshape data from(history_size, ) to(history_size, 1)
         data.append(np.reshape(dataset[indices], (history_size, 1)))
         labels.append(dataset[i + target_size])
-        print ("i: " + i + " data: " + data)
+        print ("i: " + str(i) + " data: " + data)
     return np.array(data), np.array(labels)
 
 def create_time_steps(length):
