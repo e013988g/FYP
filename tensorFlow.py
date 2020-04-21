@@ -50,7 +50,7 @@ mpl.rcParams['axes.grid'] = False
 zip_path = tf.keras.utils.get_file(origin = 'https://storage.googleapis.com/tensorflow/tf-keras-datasets/jena_climate_2009_2016.csv.zip', fname = 'jena_climate_2009_2016.csv.zip', extract = True)
 csv_path, _ = os.path.splitext(zip_path)
 df = pd.read_csv(csv_path)
-df.head()
+print(df.head())
 TRAIN_SPLIT = 300000
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['T (degC)']
