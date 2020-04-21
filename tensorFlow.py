@@ -68,6 +68,7 @@ def show_plot(plot_data, delta, title):
 mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
+print(df)
 TRAIN_SPLIT = 34
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
