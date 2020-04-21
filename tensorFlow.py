@@ -76,11 +76,10 @@ uni_data.index = df['dateReg']
 uni_data.head()
 uni_data.plot(subplots=True)
 uni_data = uni_data.values
-print(df)
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
-print(uni_train_mean)
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
+print(uni_data)
 univariate_past_history = 3
 univariate_future_target = 0
 
