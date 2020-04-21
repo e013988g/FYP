@@ -4,6 +4,24 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import pandas as pd
+import json
+
+def getRecentDatabaseData():
+    line_items = []
+    conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
+    cursor = conn.cursor()
+    sql_text = "SELECT TOP 100 ReadingPPM, DateRegistered FROM CO2_Readings ORDER BY DateRegistered DESC"
+    row = cursor.fetchone()
+    while row:
+        jsonObject = {
+                reading: str(row[0]),
+                dateReg: str(row[1])
+            }
+        line_items.append(jsonObject)
+    print(json.dumps(line_items))
+    conn.close()
+    
+    return line_items
 
 def univariate_data(dataset, start_index, end_index, history_size, target_size):
     data = []
@@ -50,7 +68,7 @@ mpl.rcParams['axes.grid'] = False
 zip_path = tf.keras.utils.get_file(origin = 'https://storage.googleapis.com/tensorflow/tf-keras-datasets/jena_climate_2009_2016.csv.zip', fname = 'jena_climate_2009_2016.csv.zip', extract = True)
 csv_path, _ = os.path.splitext(zip_path)
 df = pd.read_csv(csv_path)
-print(df.head())
+print(getRecentDatabaseData())
 TRAIN_SPLIT = 300000
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['T (degC)']
