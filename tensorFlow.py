@@ -38,7 +38,7 @@ def univariate_data(dataset, start_index, end_index, history_size, target_size):
         indices = range(i - history_size, i)# Reshape data from(history_size, ) to(history_size, 1)
         data.append(np.reshape(dataset[indices], (history_size, 1)))
         labels.append(dataset[i + target_size])
-        print ("i: " + str(i))
+        
     return np.array(data), np.array(labels)
 
 def create_time_steps(length):
@@ -68,7 +68,7 @@ def show_plot(plot_data, delta, title):
 mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
-TRAIN_SPLIT = 10
+TRAIN_SPLIT = 34
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
@@ -78,10 +78,10 @@ uni_data = uni_data.values
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
-univariate_past_history = 0
+univariate_past_history = 20
 univariate_future_target = 0
 
-x_train_uni, y_train_uni = univariate_data(uni_data, 0, 5,
+x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
                                            univariate_past_history,
                                            univariate_future_target)
 x_val_uni, y_val_uni = univariate_data(uni_data, TRAIN_SPLIT, None,
