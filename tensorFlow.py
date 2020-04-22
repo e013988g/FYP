@@ -11,7 +11,7 @@ def getRecentDatabaseData():
     line_items = []
     conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
     cursor = conn.cursor()
-    sql_text = "SELECT TOP 34 ReadingPPM, DateRegistered FROM CO2_Readings ORDER BY DateRegistered DESC"
+    sql_text = "SELECT TOP 1500 ReadingPPM, DateRegistered FROM CO2_Readings ORDER BY DateRegistered DESC"
     cursor.execute(sql_text)
     row = cursor.fetchone()
     while row:
@@ -72,7 +72,7 @@ mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
 print(df)
-TRAIN_SPLIT = 33
+TRAIN_SPLIT = 1499
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
