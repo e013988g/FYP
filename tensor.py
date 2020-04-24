@@ -113,5 +113,7 @@ simple_lstm_model = tf.keras.models.Sequential([
 ])
 
 simple_lstm_model.compile(optimizer='adam', loss='mae')
-for x, y in val_univariate.take(1):
+iterator = val_univariate.make_one_shot_iterator()
+next_element = iterator.get_next()
+for x, y in next_element:
     print(simple_lstm_model.predict(x).shape)
