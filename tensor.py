@@ -90,3 +90,13 @@ train_univariate = train_univariate.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZ
 
 val_univariate = tf.data.Dataset.from_tensor_slices((x_val_uni, y_val_uni))
 val_univariate = val_univariate.batch(BATCH_SIZE).repeat()
+
+simple_lstm_model = tf.keras.models.Sequential([
+    tf.keras.layers.LSTM(8, input_shape=x_train_uni.shape[-2:]),
+    tf.keras.layers.Dense(1)
+])
+
+simple_lstm_model.compile(optimizer='adam', loss='mae')
+
+for x, y in val_univariate.take(1):
+    print(simple_lstm_model.predict(x).shape)
