@@ -110,6 +110,7 @@ print(val_univariate)
 
 simple_lstm_model = tf.keras.models.Sequential([
     tf.keras.layers.LSTM(8, input_shape=x_train_uni.shape[-2:]),
+    tf.keras.layers.Flatten(),
     tf.keras.layers.Dense(1)
 ])
 
