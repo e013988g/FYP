@@ -103,9 +103,10 @@ BUFFER_SIZE = 1499
 
 train_univariate = tf.data.Dataset.from_tensor_slices((x_train_uni, y_train_uni))
 train_univariate = train_univariate.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repeat()
-
+print(train_univariate)
 val_univariate = tf.data.Dataset.from_tensor_slices((x_val_uni, y_val_uni))
 val_univariate = val_univariate.batch(BATCH_SIZE).repeat()
+print(val_univariate)
 
 simple_lstm_model = tf.keras.models.Sequential([
     tf.keras.layers.LSTM(8, input_shape=x_train_uni.shape[-2:]),
