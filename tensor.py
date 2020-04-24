@@ -60,7 +60,7 @@ zip_path = tf.keras.utils.get_file(
 csv_path, _ = os.path.splitext(zip_path)
 df = pd.read_csv(csv_path)
 df.head()
-TRAIN_SPLIT = 3000
+TRAIN_SPLIT = 300
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['T (degC)']
 uni_data.index = df['Date Time']
@@ -84,8 +84,8 @@ print (x_train_uni[0])
 print ('\n Target temperature to predict')
 print (y_train_uni[0])
 
-BATCH_SIZE = 1000
-BUFFER_SIZE = 10000
+BATCH_SIZE = 100
+BUFFER_SIZE = 1000
 
 train_univariate = tf.data.Dataset.from_tensor_slices((x_train_uni, y_train_uni))
 train_univariate = train_univariate.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repeat()
