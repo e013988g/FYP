@@ -99,7 +99,7 @@ show_plot([x_train_uni[0], y_train_uni[0], baseline(x_train_uni[0])], 0,
            'Baseline Prediction Example')
 
 BATCH_SIZE = 256
-BUFFER_SIZE = 10000
+BUFFER_SIZE = 1499
 
 train_univariate = tf.data.Dataset.from_tensor_slices((x_train_uni, y_train_uni))
 train_univariate = train_univariate.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repeat()
