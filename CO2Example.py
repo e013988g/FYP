@@ -29,7 +29,7 @@ try:
             sendDataToDb.insertCOReading(CO2Perc["CO"])
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
-            sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
+            sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"]), (COPerc["CO"])))
             sys.stdout.flush()
             time.sleep(10)
             notificationSettings = json.loads(notifications.getSettings())
