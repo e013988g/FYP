@@ -26,4 +26,4 @@ def getRecentDatabaseData(self):
     
     return json.dumps(line_items)
 
-getRecentDatabaseData();
+getRecentDatabaseData(self);
