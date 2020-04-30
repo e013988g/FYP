@@ -44,9 +44,7 @@ class MQCO2():
                                             # to the original curve.
                                             # data format:[ x, y, slope]; point1: (lg200, 0.53), point2: (lg10000,  -0.22)  
                 
-        print("Calibrating...")
-        self.Ro = self.MQCalibration(self.MQ_PIN)
-        print("Calibration is done...\n")
+        self.Ro = 10
         print("Ro=%f kohm" % self.Ro)
     
     
