@@ -26,7 +26,7 @@ class MQCO():
     GAS_CO                       = 1
     GAS_SMOKE                    = 2
 
-    def __init__(self, Ro=10, analogPin=0):
+    def __init__(self, Ro=10, analogPin=1):
         self.Ro = Ro
         self.MQ_PIN = analogPin
         self.adc = MCP3008()
