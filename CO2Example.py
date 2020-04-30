@@ -5,7 +5,7 @@ from sendCO2Email import *
 from sendCOText import *
 from sendDataToDB import *
 from getNotificationSettings import *
-import sys, time
+import sys, time, json
 
 try:
     CO2Trigerred = False
@@ -30,9 +30,10 @@ try:
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
             sys.stdout.flush()
             time.sleep(10)
-            notificationSettings = notifications.getSettings()
-            sendText = notificationSettings.sendText
-            sendEmail = notificationSettings.sendEmail
+            notificationSettings = json.loads(notifications.getSettings())
+            
+            sendText = notificationSettings["sendText"]
+            sendEmail = notificationSettings["sendEmail"]
             print(sendText + " " + sendEmail)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if PreviousTriggeredState == False:
