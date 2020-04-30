@@ -1,4 +1,3 @@
-from mq import *
 from twilio.rest import Client
 import sys, time
 
