@@ -2,7 +2,7 @@ from mailjet_rest import Client
 import os
 import sys, time
 
-class sendCO2Email():
+class sendCOEmail():
     def createEmail(self, sendEmail):
         if sendEmail > 0:
             api_key = '2a7dd591bb2a78637787a36bc2d6474a'
@@ -21,8 +21,8 @@ class sendCO2Email():
                       "Name": "Luke"
                     }
                   ],
-                  "Subject": "CO2 Warning!",
-                  "TextPart": "CO2 levels have breached a safe level.",
+                  "Subject": "CO Warning!",
+                  "TextPart": "CO levels have breached a safe level.",
                   "HTMLPart": "",
                   "CustomID": "sendnow"
                 }

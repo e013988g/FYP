@@ -2,6 +2,7 @@ from mqCO2 import *
 from mqCO import *
 from sendCO2Text import *
 from sendCO2Email import *
+from sendCOEmail import *
 from sendCOText import *
 from sendDataToDB import *
 from getNotificationSettings import *
@@ -17,6 +18,7 @@ try:
     CO2Text = sendCO2Text();
     COText = sendCOText();
     sendCarbonDioxideEmail = sendCO2Email();
+    sendCarbonMonoxideEmail = sendCOEmail();
     notifications = getNotifications();
     
     while True:
@@ -31,14 +33,12 @@ try:
             sys.stdout.flush()
             time.sleep(10)
             notificationSettings = json.loads(notifications.getSettings())
-            print(notificationSettings[0])
             sendText = notificationSettings[0]["sendText"]
             sendEmail = notificationSettings[0]["sendEmail"]
-            print(sendEmail)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if PreviousTriggeredState == False:
-                    message = CO2Text.createClientMessage()
-                    email = sendCarbonDioxideEmail.createEmail()
+                    message = CO2Text.createClientMessage(sendText)
+                    email = sendCarbonDioxideEmail.createEmail(sendEmail)
                 PreviousTriggeredState = True
             
             if ((CO2Perc["SMOKE"]) * 20000) <= 1000:
@@ -46,7 +46,8 @@ try:
             
             if COPerc["CO"] > 70:
                 if COPreviousTriggeredState == False:
-                    message = COText.createClientMessage()
+                    message = COText.createClientMessage(sendText)
+                    email = sendCarbonMonoxideEmail.createEmail(sendEmail)
                 COPreviousTriggeredState = True
             
             if COPerc["CO"] <= 70:
