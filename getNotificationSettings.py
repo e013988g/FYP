@@ -25,3 +25,5 @@ def getRecentDatabaseData(self):
     print(jsonObject)
     
     return json.dumps(line_items)
+
+getRecentDatabaseData();
