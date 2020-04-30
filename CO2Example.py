@@ -4,6 +4,7 @@ from sendCO2Text import *
 from sendCO2Email import *
 from sendCOText import *
 from sendDataToDB import *
+from getNotificationSettings import *
 import sys, time
 
 try:
@@ -16,8 +17,10 @@ try:
     CO2Text = sendCO2Text();
     COText = sendCOText();
     sendCarbonDioxideEmail = sendCO2Email();
+    notifications = getNotifications();
     
     while True:
+            
             CO2Perc = mqCO2.MQPercentage()
             COPerc = mqCO.MQPercentage()
             sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
@@ -26,8 +29,11 @@ try:
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"] * 20000), (COPerc["CO"])))
             sys.stdout.flush()
-            
             time.sleep(10)
+            notificationSettings = notifications.getSettings()
+            sendText = notificationSettings.sendText
+            sendEmail = notificationSettings.sendEmail
+            print(sendText + " " + sendEmail)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if PreviousTriggeredState == False:
                     message = CO2Text.createClientMessage()
