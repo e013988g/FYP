@@ -34,7 +34,7 @@ try:
             print(notificationSettings[0])
             sendText = notificationSettings[0]["sendText"]
             sendEmail = notificationSettings[0]["sendEmail"]
-            print(sendText + " " + sendEmail)
+            print(sendEmail)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if PreviousTriggeredState == False:
                     message = CO2Text.createClientMessage()
