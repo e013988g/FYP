@@ -44,7 +44,7 @@ class MQCO2():
                                             # to the original curve.
                                             # data format:[ x, y, slope]; point1: (lg200, 0.53), point2: (lg10000,  -0.22)  
                 
-        self.Ro = 30
+        self.Ro = 20
         print("Ro=%f kohm" % self.Ro)
     
     
