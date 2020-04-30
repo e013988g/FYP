@@ -31,9 +31,9 @@ try:
             sys.stdout.flush()
             time.sleep(10)
             notificationSettings = json.loads(notifications.getSettings())
-            print(notificationSettings)
-            sendText = notificationSettings["sendText"][0]
-            sendEmail = notificationSettings["sendEmail"][0]
+            print(notificationSettings[0])
+            sendText = notificationSettings[0]["sendText"]
+            sendEmail = notificationSettings[0]["sendEmail"]
             print(sendText + " " + sendEmail)
             if ((CO2Perc["SMOKE"]) * 20000) > 1000:
                 if PreviousTriggeredState == False:
