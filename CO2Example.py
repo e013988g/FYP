@@ -31,7 +31,7 @@ try:
             sys.stdout.flush()
             time.sleep(10)
             notificationSettings = json.loads(notifications.getSettings())
-            
+            print(notificationSettings)
             sendText = notificationSettings["sendText"]
             sendEmail = notificationSettings["sendEmail"]
             print(sendText + " " + sendEmail)
