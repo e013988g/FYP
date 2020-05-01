@@ -31,7 +31,7 @@ try:
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"]), (COPerc["CO"])))
             sys.stdout.flush()
-            time.sleep(10)
+            time.sleep(15)
             notificationSettings = json.loads(notifications.getSettings())
             sendText = notificationSettings[0]["sendText"]
             sendEmail = notificationSettings[0]["sendEmail"]
