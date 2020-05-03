@@ -76,7 +76,7 @@ TRAIN_SPLIT = 200
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
-uni_data.head()
+print(uni_data.head())
 uni_data.plot(subplots=True)
 plt.show()
 # uni_data = uni_data.values
