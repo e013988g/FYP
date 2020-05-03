@@ -77,7 +77,7 @@ uni_data = df['reading']
 uni_data.index = df['dateReg']
 uni_data.head()
 uni_data.plot(subplots=True)
-plt.show()
+#plt.show()
 uni_data = uni_data.values
 # uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 # uni_train_std = uni_data[:TRAIN_SPLIT].std()
@@ -97,5 +97,5 @@ print ('\n Target temperature to predict')
 print (y_train_uni[0])
 # print("test")
 # print(baseline(x_train_uni[0]))
-# show_plot([x_train_uni[0], y_train_uni[0], baseline(x_train_uni[0])], 0, 'Baseline Prediction Example')
-# plt.show()
+show_plot([x_train_uni[0], y_train_uni[0], baseline(x_train_uni[0])], 0, 'Baseline Prediction Example')
+plt.show()
