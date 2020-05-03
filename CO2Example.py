@@ -35,7 +35,7 @@ try:
             notificationSettings = json.loads(notifications.getSettings())
             sendText = notificationSettings[0]["sendText"]
             sendEmail = notificationSettings[0]["sendEmail"]
-            if ((CO2Perc["SMOKE"]) * 20000) > 1000:
+            if (CO2Perc["SMOKE"]) > 1000:
                 if PreviousTriggeredState == False:
                     message = CO2Text.createClientMessage(sendText)
                     email = sendCarbonDioxideEmail.createEmail(sendEmail)
