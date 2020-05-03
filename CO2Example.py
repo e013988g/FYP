@@ -41,7 +41,7 @@ try:
                     email = sendCarbonDioxideEmail.createEmail(sendEmail)
                 PreviousTriggeredState = True
             
-            if ((CO2Perc["SMOKE"]) * 20000) <= 1000:
+            if ((CO2Perc["SMOKE"])) <= 1000:
                 PreviousTriggeredState = False
             
             if COPerc["CO"] > 70:
