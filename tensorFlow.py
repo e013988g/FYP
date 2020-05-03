@@ -78,7 +78,7 @@ uni_data.index = df['dateReg']
 uni_data.head()
 uni_data.plot(subplots=True)
 plt.show()
-# uni_data = uni_data.values
+uni_data = uni_data.values
 # uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 # uni_train_std = uni_data[:TRAIN_SPLIT].std()
 # uni_data = (uni_data-uni_train_mean)/uni_train_std
