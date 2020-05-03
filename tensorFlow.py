@@ -48,6 +48,7 @@ def show_plot(plot_data, delta, title):
   labels = ['History', 'True Future', 'Model Prediction']
   marker = ['.-', 'rx', 'go']
   time_steps = create_time_steps(plot_data[0].shape[0])
+  print(time_steps)
   if delta:
     future = delta
   else:
