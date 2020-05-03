@@ -42,7 +42,7 @@ def univariate_data(dataset, start_index, end_index, history_size, target_size):
     return np.array(data), np.array(labels)
 
 def create_time_steps(length):
-  return list(range(-length, 0))
+  return list(range(-length, 10))
 
 def show_plot(plot_data, delta, title):
   labels = ['History', 'True Future', 'Model Prediction']
@@ -85,7 +85,7 @@ uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
 univariate_past_history = 10
 univariate_future_target = 0
- 
+
 x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
                                             univariate_past_history,
                                             univariate_future_target)
