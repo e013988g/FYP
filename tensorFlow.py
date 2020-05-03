@@ -42,7 +42,7 @@ def univariate_data(dataset, start_index, end_index, history_size, target_size):
     return np.array(data), np.array(labels)
 
 def create_time_steps(length):
-  return list(range(-length, 10))
+  return list(range(-length, 1))
 
 def show_plot(plot_data, delta, title):
   labels = ['History', 'True Future', 'Model Prediction']
