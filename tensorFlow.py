@@ -71,7 +71,6 @@ def baseline(history):
 mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
-print(df.head())
 TRAIN_SPLIT = 200
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
