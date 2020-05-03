@@ -11,7 +11,7 @@ def getRecentDatabaseData():
     line_items = []
     conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
     cursor = conn.cursor()
-    sql_text = "SELECT TOP 1500 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-2,GETDATE()) ORDER BY DateRegistered DESC "
+    sql_text = "SELECT TOP 1000 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-1,GETDATE()) ORDER BY DateRegistered DESC "
     cursor.execute(sql_text)
     row = cursor.fetchone()
     while row:
@@ -72,7 +72,7 @@ mpl.rcParams['figure.figsize'] = (8, 6)
 mpl.rcParams['axes.grid'] = False
 df = pd.read_json(getRecentDatabaseData())
 print(df)
-TRAIN_SPLIT = 1300
+TRAIN_SPLIT = 1000
 tf.compat.v1.random.set_random_seed(13)
 uni_data = df['reading']
 uni_data.index = df['dateReg']
@@ -82,7 +82,7 @@ uni_data = uni_data.values
 uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
 uni_train_std = uni_data[:TRAIN_SPLIT].std()
 uni_data = (uni_data-uni_train_mean)/uni_train_std
-univariate_past_history = 20
+univariate_past_history = 100
 univariate_future_target = 0
 
 x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
@@ -95,6 +95,7 @@ print ('Single window of past history')
 print (x_train_uni[0])
 print ('\n Target temperature to predict')
 print (y_train_uni[0])
-show_plot([x_train_uni[0], y_train_uni[0], baseline(x_train_uni[0])], 0,
-           'Baseline Prediction Example')
-plt.show()
+print("test")
+print(baseline(x_train_uni[0]))
+#show_plot([x_train_uni[0], y_train_uni[0], baseline(x_train_uni[0])], 0, 'Baseline Prediction Example')
+#plt.show()
