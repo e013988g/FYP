@@ -29,7 +29,10 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-print(series)
 model = ARIMA(series['reading'], order=(5,1,0))
 model_fit = model.fit(disp=0)
-print(model_fit.summary())
+
+# plot residual errors
+residuals = DataFrame(model_fit.resid)
+residuals.plot()
+pyplot.show()
