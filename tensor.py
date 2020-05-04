@@ -17,8 +17,8 @@ def getRecentDatabaseData():
     row = cursor.fetchone()
     while row:
         jsonObject = {
-                'reading': row[0],
-                'dateReg': row[1]
+                'reading': float(row[0]),
+                'dateReg': str(row[1])
             }
         line_items.append(jsonObject)
         row = cursor.fetchone()
