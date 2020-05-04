@@ -28,5 +28,5 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-autocorrelation_plot(series)
-plt.show()
+print(series.head())
+
