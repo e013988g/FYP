@@ -1,4 +1,3 @@
-import tensorflow as tf
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
@@ -28,6 +27,6 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-print(series.head())
+print(series)
 autocorrelation_plot(series)
 plt.show()
