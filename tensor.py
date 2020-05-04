@@ -30,6 +30,7 @@ def getRecentDatabaseData():
 
 series = read_json(getRecentDatabaseData())
 X = series['reading'].values
+print(X)
 size = int(len(X) * 0.66)
 train, test = X[0:size], X[size:len(X)]
 history = [x for x in train]
