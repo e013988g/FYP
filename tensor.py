@@ -34,9 +34,8 @@ size = int(len(X) * 0.66)
 train, test = X[0:size], X[size:len(X)]
 history = [x for x in train]
 predictions = list()
-print(predictions)
-# for t in range(len(test)):
-#     model = ARIMA(history, order=(5,1,0))
+for t in range(len(test)):
+     model = ARIMA(history, order=(5,1,0))
 #     model_fit = model.fit(disp=0)
 #     output = model_fit.forecast()
 #     yhat = output[0]
