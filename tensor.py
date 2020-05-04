@@ -29,13 +29,23 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-model = ARIMA(series['reading'], order=(5,1,0))
-model_fit = model.fit(disp=0)
-
-# plot residual errors
-residuals = DataFrame(model_fit.resid)
-residuals.plot()
-plt.show()
-residuals.plot(kind='kde')
-plt.show()
-print(residuals.describe())
+X = series.values
+size = int(len(X) * 0.66)
+train, test = X[0:size], X[size:len(X)]
+history = [x for x in train]
+predictions = list()
+for t in range(len(test)):
+    model = ARIMA(history, order=(5,1,0))
+    model_fit = model.fit(disp=0)
+    output = model_fit.forecast()
+    yhat = output[0]
+    predictions.append(yhat)
+    obs = test[t]
+    history.append(obs)
+    print('predicted=%f, expected=%f' % (yhat, obs))
+error = mean_squared_error(test, predictions)
+print('Test MSE: %.3f' % error)
+# plot
+pyplot.plot(test)
+pyplot.plot(predictions, color='red')
+pyplot.show()
