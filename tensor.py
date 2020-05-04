@@ -6,6 +6,8 @@ from pandas import read_json
 import json
 import pyodbc
 from pandas.plotting import autocorrelation_plot
+from pandas import DataFrame
+from statsmodels.tsa.arima_model import ARIMA
 
 def getRecentDatabaseData():
     line_items = []
