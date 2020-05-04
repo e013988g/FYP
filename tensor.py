@@ -29,4 +29,5 @@ def getRecentDatabaseData():
 
 series = read_json(getRecentDatabaseData())
 print(series.head())
-
+series.plot()
+plt.show()
