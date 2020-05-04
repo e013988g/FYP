@@ -1,104 +1,32 @@
 import tensorflow as tf
-
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-import pandas as pd
-tf.compat.v1.enable_eager_execution(
-    config=None, device_policy=None, execution_mode=None
-)
-def univariate_data(dataset, start_index, end_index, history_size, target_size):
-  data = []
-  labels = []
+from pandas import read_json
+import json
+import pyodbc
+from pandas.plotting import autocorrelation_plot
 
-  start_index = start_index + history_size
-  if end_index is None:
-    end_index = len(dataset) - target_size
+def getRecentDatabaseData():
+    line_items = []
+    conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
+    cursor = conn.cursor()
+    sql_text = "SELECT TOP 1000 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-1,GETDATE()) ORDER BY DateRegistered DESC "
+    cursor.execute(sql_text)
+    row = cursor.fetchone()
+    while row:
+        jsonObject = {
+                'reading': str(row[0]),
+                'dateReg': str(row[1])
+            }
+        line_items.append(jsonObject)
+        row = cursor.fetchone()
+    
+    conn.close()
+    
+    return json.dumps(line_items)
 
-  for i in range(start_index, end_index):
-    indices = range(i-history_size, i)
-    # Reshape data from (history_size,) to (history_size, 1)
-    data.append(np.reshape(dataset[indices], (history_size, 1)))
-    labels.append(dataset[i+target_size])
-  return np.array(data), np.array(labels)
-
-def create_time_steps(length):
-  return list(range(-length, 0))
-
-def show_plot(plot_data, delta, title):
-  labels = ['History', 'True Future', 'Model Prediction']
-  marker = ['.-', 'rx', 'go']
-  time_steps = create_time_steps(plot_data[0].shape[0])
-  if delta:
-    future = delta
-  else:
-    future = 0
-
-  plt.title(title)
-  for i, x in enumerate(plot_data):
-    if i:
-      plt.plot(future, plot_data[i], marker[i], markersize=10,
-               label=labels[i])
-    else:
-      plt.plot(time_steps, plot_data[i].flatten(), marker[i], label=labels[i])
-  plt.legend()
-  plt.xlim([time_steps[0], (future+5)*2])
-  plt.xlabel('Time-Step')
-  return plt
-
-def baseline(history):
-  return np.mean(history)
-
-mpl.rcParams['figure.figsize'] = (8, 6)
-mpl.rcParams['axes.grid'] = False
-
-zip_path = tf.keras.utils.get_file(
-    origin='https://storage.googleapis.com/tensorflow/tf-keras-datasets/jena_climate_2009_2016.csv.zip',
-    fname='jena_climate_2009_2016.csv.zip',
-    extract=True)
-csv_path, _ = os.path.splitext(zip_path)
-df = pd.read_csv(csv_path)
-df.head()
-TRAIN_SPLIT = 300
-tf.compat.v1.random.set_random_seed(13)
-uni_data = df['T (degC)']
-uni_data.index = df['Date Time']
-uni_data.head()
-uni_data.plot(subplots=True)
-uni_data = uni_data.values
-uni_train_mean = uni_data[:TRAIN_SPLIT].mean()
-uni_train_std = uni_data[:TRAIN_SPLIT].std()
-uni_data = (uni_data-uni_train_mean)/uni_train_std
-univariate_past_history = 20
-univariate_future_target = 0
-
-x_train_uni, y_train_uni = univariate_data(uni_data, 0, TRAIN_SPLIT,
-                                           univariate_past_history,
-                                           univariate_future_target)
-x_val_uni, y_val_uni = univariate_data(uni_data, TRAIN_SPLIT, None,
-                                       univariate_past_history,
-                                       univariate_future_target)
-print ('Single window of past history')
-print (x_train_uni[0])
-print ('\n Target temperature to predict')
-print (y_train_uni[0])
-
-BATCH_SIZE = 100
-BUFFER_SIZE = 1000
-
-train_univariate = tf.data.Dataset.from_tensor_slices((x_train_uni, y_train_uni))
-train_univariate = train_univariate.cache().shuffle(BUFFER_SIZE).batch(BATCH_SIZE).repeat()
-
-val_univariate = tf.data.Dataset.from_tensor_slices((x_val_uni, y_val_uni))
-val_univariate = val_univariate.batch(BATCH_SIZE).repeat()
-
-simple_lstm_model = tf.keras.models.Sequential([
-    tf.keras.layers.LSTM(8, input_shape=x_train_uni.shape[-2:]),
-    tf.keras.layers.Dense(1)
-])
-
-simple_lstm_model.compile(optimizer='adam', loss='mae')
-
-for x, y in val_univariate.take(1):
-    print(simple_lstm_model.predict(x).shape)
+series = read_json(getRecentDatabaseData())
+autocorrelation_plot(series)
+pyplot.show()
