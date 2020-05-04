@@ -35,4 +35,4 @@ model_fit = model.fit(disp=0)
 # plot residual errors
 residuals = DataFrame(model_fit.resid)
 residuals.plot()
-pyplot.show()
+plt.show()
