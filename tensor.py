@@ -30,15 +30,11 @@ def getRecentDatabaseData():
 
 series = read_json(getRecentDatabaseData())
 X = series.values
-print(X)
 size = int(len(X) * 0.66)
-print(size)
 train, test = X[0:size], X[size:len(X)]
-print(train)
-print(test)
 history = [x for x in train]
-print(history)
-#predictions = list()
+predictions = list()
+print(predictions)
 # for t in range(len(test)):
 #     model = ARIMA(history, order=(5,1,0))
 #     model_fit = model.fit(disp=0)
