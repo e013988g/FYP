@@ -29,4 +29,4 @@ def getRecentDatabaseData():
 
 series = read_json(getRecentDatabaseData())
 autocorrelation_plot(series)
-pyplot.show()
+plt.show()
