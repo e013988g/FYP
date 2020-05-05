@@ -32,7 +32,7 @@ series = read_json(getRecentDatabaseData())
 
 rolling_mean = series.rolling(window = 12).mean()
 rolling_std = series.rolling(window = 12).std()
-#plt.plot(series, color = 'blue', label = 'Original')
+plt.plot(series.head(), color = 'blue', label = 'Original')
 plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
 plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
 plt.legend(loc = 'best')
