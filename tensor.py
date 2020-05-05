@@ -40,13 +40,13 @@ series = read_json(getRecentDatabaseData())
 # model_fit.plot_predict(dynamic=False)
 # plt.show()
 
-train = series['reading'][:2500]
-test = series['reading'][2500:]
+train = series['reading'][:200]
+test = series['reading'][200:]
 model = ARIMA(train, order=(1, 1, 1))  
 fitted = model.fit(disp=-1)  
 
 # Forecast
-fc, se, conf = fitted.forecast(2500, alpha=0.05)  # 95% conf
+fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
 
 # Make as pandas series
 fc_series = Series(fc, index=test.index)
