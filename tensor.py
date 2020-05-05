@@ -43,7 +43,7 @@ series = read_json(getRecentDatabaseData())
 train = series['reading'][:200]
 test = series['reading'][200:]
 print(train)
-model = ARIMA(train, order=(4, 1, 2))  
+model = ARIMA(train, order=(4, 1, 1))  
 fitted = model.fit(disp=-1)  
 
 # Forecast
