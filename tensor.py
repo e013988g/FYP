@@ -42,7 +42,7 @@ series = read_json(getRecentDatabaseData())
 
 train = series['reading'][:85]
 test = series['reading'][85:]
-
+print(train)
 model = ARIMA(train, order=(1, 1, 1))  
 fitted = model.fit(disp=-1)  
 
