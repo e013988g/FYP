@@ -31,13 +31,16 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-#plt.show()
-model = ARIMA(series['reading'].values, order=(5,1,0))
-model_fit = model.fit(disp=0)
-print(model_fit.summary())
-
-model_fit.plot_predict(dynamic=False)
-plt.show()
+# plt.show()
+# model = ARIMA(series['reading'].values, order=(5,1,0))
+# model_fit = model.fit(disp=0)
+# print(model_fit.summary())
+# 
+# model_fit.plot_predict(dynamic=False)
+# plt.show()
 
 train = series['reading'].values[:85]
 test = series['reading'].values[85:]
+print(train)
+print("OIII")
+print(test)
