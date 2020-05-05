@@ -29,25 +29,12 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-X = series['reading'].values
-print(X)
-size = int(len(X) * 0.66)
-train, test = X[0:size], X[size:len(X)]
-history = [x for x in train]
-predictions = list()
-print(history)
-for t in range(len(test)):
-     model = ARIMA(history[0], order=(5,1,0))
-#     model_fit = model.fit(disp=0)
-#     output = model_fit.forecast()
-#     yhat = output[0]
-#     predictions.append(yhat)
-#     obs = test[t]
-#     history.append(obs)
-#     print('predicted=%f, expected=%f' % (yhat, obs))
-# error = mean_squared_error(test, predictions)
-# print('Test MSE: %.3f' % error)
-# plot
-# pyplot.plot(test)
-# pyplot.plot(predictions, color='red')
-# pyplot.show()
+
+rolling_mean = series.rolling(window = 12).mean()
+rolling_std = series.rolling(window = 12).std()
+plt.plot(df, color = 'blue', label = 'Original')
+plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
+plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
+plt.legend(loc = 'best')
+plt.title('Rolling Mean & Rolling Standard Deviation')
+plt.show()
