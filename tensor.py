@@ -30,9 +30,9 @@ def getRecentDatabaseData():
 
 series = read_json(getRecentDatabaseData())
 print(series)
-rolling_mean = series.rolling(window = 12).mean()
-rolling_std = series.rolling(window = 12).std()
-plt.plot(series.head(), color = 'blue', label = 'Original')
+rolling_mean = series['reading'].rolling(window = 12).mean()
+rolling_std = series['reading'].rolling(window = 12).std()
+plt.plot(series, color = 'blue', label = 'Original')
 plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
 plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
 plt.legend(loc = 'best')
