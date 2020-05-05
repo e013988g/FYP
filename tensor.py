@@ -8,6 +8,7 @@ import pyodbc
 from pandas.plotting import autocorrelation_plot
 from pandas import DataFrame
 from statsmodels.tsa.arima_model import ARIMA
+from statsmodels.tsa.stattools import adfuller
 
 def getRecentDatabaseData():
     line_items = []
