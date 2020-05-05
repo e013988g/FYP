@@ -8,6 +8,7 @@ import json
 import pyodbc
 from pandas.plotting import autocorrelation_plot
 from pandas import DataFrame
+from pandas import Series
 from statsmodels.tsa.arima_model import ARIMA
 from statsmodels.tsa.stattools import adfuller
 
@@ -49,9 +50,9 @@ fitted = model.fit(disp=-1)
 fc, se, conf = fitted.forecast(15, alpha=0.05)  # 95% conf
 
 # Make as pandas series
-fc_series = pd.Series(fc, index=test.index)
-lower_series = pd.Series(conf[:, 0], index=test.index)
-upper_series = pd.Series(conf[:, 1], index=test.index)
+fc_series = Series(fc, index=test.index)
+lower_series = Series(conf[:, 0], index=test.index)
+upper_series = Series(conf[:, 1], index=test.index)
 
 # Plot
 plt.figure(figsize=(12,5), dpi=100)
