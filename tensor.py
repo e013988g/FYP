@@ -37,4 +37,16 @@ plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
 plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
 plt.legend(loc = 'best')
 plt.title('Rolling Mean & Rolling Standard Deviation')
+#plt.show()
+
+# Dickey–Fuller test:
+result = adfuller(series['reading'])
+print('ADF Statistic: {}'.format(result[0]))
+print('p-value: {}'.format(result[1]))
+print('Critical Values:')
+for key, value in result[4].items():
+    print('\t{}: {}'.format(key, value))
+    
+df_log = np.log(series['reading'])
+plt.plot(df_log)
 plt.show()
