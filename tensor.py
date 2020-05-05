@@ -13,7 +13,7 @@ def getRecentDatabaseData():
     line_items = []
     conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
     cursor = conn.cursor()
-    sql_text = "SELECT TOP 1000 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-1,GETDATE()) ORDER BY DateRegistered DESC "
+    sql_text = "SELECT TOP 1000 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-2,GETDATE()) ORDER BY DateRegistered DESC "
     cursor.execute(sql_text)
     row = cursor.fetchone()
     while row:
@@ -30,11 +30,11 @@ def getRecentDatabaseData():
 
 series = read_json(getRecentDatabaseData())
 print(series)
-# rolling_mean = series.rolling(window = 12).mean()
-# rolling_std = series.rolling(window = 12).std()
-# plt.plot(series.head(), color = 'blue', label = 'Original')
-# plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
-# plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
-# plt.legend(loc = 'best')
-# plt.title('Rolling Mean & Rolling Standard Deviation')
+rolling_mean = series.rolling(window = 12).mean()
+rolling_std = series.rolling(window = 12).std()
+plt.plot(series.head(), color = 'blue', label = 'Original')
+plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
+plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
+plt.legend(loc = 'best')
+plt.title('Rolling Mean & Rolling Standard Deviation')
 # plt.show()
