@@ -16,7 +16,7 @@ def getRecentDatabaseData():
     line_items = []
     conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
     cursor = conn.cursor()
-    sql_text = "SELECT TOP 1000 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-3,GETDATE()) ORDER BY DateRegistered DESC "
+    sql_text = "SELECT TOP 5000 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DateRegistered >= DATEADD(day,-2,GETDATE()) ORDER BY DateRegistered DESC "
     cursor.execute(sql_text)
     row = cursor.fetchone()
     while row:
@@ -40,14 +40,13 @@ series = read_json(getRecentDatabaseData())
 # model_fit.plot_predict(dynamic=False)
 # plt.show()
 
-train = series['reading'][:200]
-test = series['reading'][200:]
-print(train)
-model = ARIMA(train, order=(4, 1, 1))  
+train = series['reading'][:2500]
+test = series['reading'][2500:]
+model = ARIMA(train, order=(1, 1, 1))  
 fitted = model.fit(disp=-1)  
 
 # Forecast
-fc, se, conf = fitted.forecast(424, alpha=0.05)  # 95% conf
+fc, se, conf = fitted.forecast(5000, alpha=0.05)  # 95% conf
 
 # Make as pandas series
 fc_series = Series(fc, index=test.index)
