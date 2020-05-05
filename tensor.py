@@ -30,6 +30,8 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
+series['dateReg'] = pd.to_datetime(series['dateReg'],format='%y%m%d%H%M%S')
+
 print(series.head())
 series.plot()
 plt.show()
