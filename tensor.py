@@ -9,6 +9,8 @@ from pandas.plotting import autocorrelation_plot
 from pandas import DataFrame
 from statsmodels.tsa.arima_model import ARIMA
 from statsmodels.tsa.stattools import adfuller
+import datetime
+
 def parser(x):
     return datetime.strptime('190'+x, '%Y-%m')
 def getRecentDatabaseData():
