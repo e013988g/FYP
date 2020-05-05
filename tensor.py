@@ -38,3 +38,6 @@ print(model_fit.summary())
 
 model_fit.plot_predict(dynamic=False)
 plt.show()
+
+train = series['reading'].values[:85]
+test = series['reading'].values[85:]
