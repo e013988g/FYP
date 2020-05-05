@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 from pandas import read_json
+from pandas import to_datetime
 import json
 import pyodbc
 from pandas.plotting import autocorrelation_plot
@@ -30,7 +31,7 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-series['dateReg'] = pd.to_datetime(series['dateReg'],format='%y%m%d%H%M%S')
+series['dateReg'] = to_datetime(series['dateReg'],format='%y%m%d%H%M%S')
 
 print(series.head())
 series.plot()
