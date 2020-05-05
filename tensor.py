@@ -30,24 +30,6 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-print(series)
-rolling_mean = series['reading'].rolling(window = 12).mean()
-rolling_std = series['reading'].rolling(window = 12).std()
-plt.plot(series['reading'], color = 'blue', label = 'Original')
-plt.plot(rolling_mean, color = 'red', label = 'Rolling Mean')
-plt.plot(rolling_std, color = 'black', label = 'Rolling Std')
-plt.legend(loc = 'best')
-plt.title('Rolling Mean & Rolling Standard Deviation')
-#plt.show()
-
-# Dickey–Fuller test:
-result = adfuller(series['reading'])
-print('ADF Statistic: {}'.format(result[0]))
-print('p-value: {}'.format(result[1]))
-print('Critical Values:')
-for key, value in result[4].items():
-    print('\t{}: {}'.format(key, value))
-    
-df_log = np.log(series['reading'])
-plt.plot(df_log)
+print(series.head())
+series.plot()
 plt.show()
