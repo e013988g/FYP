@@ -40,8 +40,8 @@ series = read_json(getRecentDatabaseData())
 # model_fit.plot_predict(dynamic=False)
 # plt.show()
 
-train = series['reading'][:85]
-test = series['reading'][85:]
+train = series['reading'][:151]
+test = series['reading'][151:]
 print(train)
 model = ARIMA(train, order=(1, 1, 1))  
 fitted = model.fit(disp=-1)  
