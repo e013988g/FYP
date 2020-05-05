@@ -46,7 +46,7 @@ model = ARIMA(train, order=(1, 1, 1))
 fitted = model.fit(disp=-1)  
 
 # Forecast
-fc, se, conf = fitted.forecast(5000, alpha=0.05)  # 95% conf
+fc, se, conf = fitted.forecast(2500, alpha=0.05)  # 95% conf
 
 # Make as pandas series
 fc_series = Series(fc, index=test.index)
