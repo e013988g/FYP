@@ -9,10 +9,7 @@ from pandas.plotting import autocorrelation_plot
 from pandas import DataFrame
 from statsmodels.tsa.arima_model import ARIMA
 from statsmodels.tsa.stattools import adfuller
-from pandas import datetime
 
-def parser(x):
-    return datetime.strptime('190'+x, '%Y-%m')
 def getRecentDatabaseData():
     line_items = []
     conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
@@ -23,7 +20,7 @@ def getRecentDatabaseData():
     while row:
         jsonObject = {
                 'reading': float(row[0]),
-                'dateReg': parser(str(row[1]))
+                'dateReg': str(row[1])
             }
         line_items.append(jsonObject)
         row = cursor.fetchone()
