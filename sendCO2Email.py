@@ -24,10 +24,9 @@ class sendCO2Email():
                       "Name": "Luke"
                     }
                   ],
-                  "Subject": "CO Warning! " + date_time,
-                  "TextPart": "CO levels have breached a safe level. " + date_time,
-                  "HTMLPart": "",
-                  "CustomID": "sendnow"
+                  "Subject": "CO2 Warning! " + date_time,
+                  "TextPart": "CO2 levels have breached a safe level. " + date_time,
+                  "HTMLPart": ""
                 }
               ]
             }
