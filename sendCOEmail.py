@@ -15,12 +15,12 @@ class sendCOEmail():
               'Messages': [
                 {
                   "From": {
-                    "Email": "lukeearp1998@gmail.com",
+                    "Email": "lukeearpp98@outlook.com",
                     "Name": "Luke"
                   },
                   "To": [
                     {
-                      "Email": "lukeearp1998@gmail.com",
+                      "Email": "lukeearpp98@outlook.com",
                       "Name": "Luke"
                     }
                   ],
