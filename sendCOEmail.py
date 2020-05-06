@@ -20,11 +20,11 @@ class sendCOEmail():
                   },
                   "To": [
                     {
-                      "Email": "lukeearpp98@outlook.com",
+                      "Email": "lukeearp98@outlook.com",
                       "Name": "Luke"
                     }
                   ],
-                  "Subject": "CO Warning! " + date_time,
+                  "Subject": "CO Threshold has been breached!",
                   "TextPart": "CO levels have breached a safe level. " + date_time,
                   "HTMLPart": "",
                   "CustomID": "sendnow"
