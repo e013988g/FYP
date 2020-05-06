@@ -20,7 +20,7 @@ class sendCO2Email():
                   },
                   "To": [
                     {
-                      "Email": "lukeearpp98@outlook.com",
+                      "Email": "lukeearp98@outlook.com",
                       "Name": "Luke"
                     }
                   ],
