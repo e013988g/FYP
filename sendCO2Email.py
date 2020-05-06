@@ -24,7 +24,7 @@ class sendCO2Email():
                       "Name": "Luke"
                     }
                   ],
-                  "Subject": "CO2 Warning! " + date_time,
+                  "Subject": "CO2 Threshold has been breached!",
                   "TextPart": "CO2 levels have breached a safe level. " + date_time,
                   "HTMLPart": ""
                 }
