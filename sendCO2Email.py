@@ -8,19 +8,19 @@ class sendCO2Email():
         if sendEmail > 0:
             now = datetime.now()
             date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-            api_key = '01de10d12429fa1f80909ceb234c3da3'
-            api_secret = '20fcff66d6358ce7518e1307810a2167'
+            api_key = 'ce9426e7bb33fe2fc0ebf344f67d7a38'
+            api_secret = 'e860031699212a48d2b2d2972b3a56b8'
             mailjet = Client(auth=(api_key, api_secret), version='v3.1')
             data = {
               'Messages': [
                 {
                   "From": {
-                    "Email": "e013988g@student.staffs.ac.uk",
+                    "Email": "lukeearp1998@gmail.com",
                     "Name": "Luke"
                   },
                   "To": [
                     {
-                      "Email": "lukeearp98@outlook.com",
+                      "Email": "lukeearp1998@gmail.com",
                       "Name": "Luke"
                     }
                   ],
