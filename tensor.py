@@ -32,34 +32,34 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-plt.show()
-model = ARIMA(series['reading'].values, order=(1,1,1))
-model_fit = model.fit(disp=0)
-print(model_fit.summary())
-
+# plt.show()
+# model = ARIMA(series['reading'].values, order=(5,1,0))
+# model_fit = model.fit(disp=0)
+# print(model_fit.summary())
+# 
 # model_fit.plot_predict(dynamic=False)
 # plt.show()
-# 
-# train = series['reading'][:200]
-# test = series['reading'][200:]
-# model = ARIMA(train, order=(1, 1, 1))  
-# fitted = model.fit(disp=-1)  
-# 
-# # Forecast
-# fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
-# 
-# # Make as pandas series
-# fc_series = Series(fc, index=test.index)
-# lower_series = Series(conf[:, 0], index=test.index)
-# upper_series = Series(conf[:, 1], index=test.index)
-# 
-# # Plot
-# plt.figure(figsize=(12,5), dpi=100)
-# plt.plot(train, label='training')
-# plt.plot(test, label='actual')
-# plt.plot(fc_series, label='forecast')
-# plt.fill_between(lower_series.index, lower_series, upper_series, 
-#                  color='k', alpha=.15)
-# plt.title('Forecast vs Actuals')
-# plt.legend(loc='upper left', fontsize=8)
-# plt.show()
+
+train = series['reading'][:200]
+test = series['reading'][200:]
+model = ARIMA(train, order=(1, 1, 1))  
+fitted = model.fit(disp=-1)  
+
+# Forecast
+fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
+print(fc)
+# Make as pandas series
+fc_series = Series(fc, index=test.index)
+lower_series = Series(conf[:, 0], index=test.index)
+upper_series = Series(conf[:, 1], index=test.index)
+
+# Plot
+plt.figure(figsize=(12,5), dpi=100)
+plt.plot(train, label='training')
+plt.plot(test, label='actual')
+plt.plot(fc_series, label='forecast')
+plt.fill_between(lower_series.index, lower_series, upper_series, 
+                 color='k', alpha=.15)
+plt.title('Forecast vs Actuals')
+plt.legend(loc='upper left', fontsize=8)
+plt.show()
