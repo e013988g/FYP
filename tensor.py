@@ -32,15 +32,6 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
-print(series)
-# plt.show()
-# model = ARIMA(series['reading'].values, order=(5,1,0))
-# model_fit = model.fit(disp=0)
-# print(model_fit.summary())
-# 
-# model_fit.plot_predict(dynamic=False)
-# plt.show()
-
 train = series['reading'][:200]
 test = series['reading'][200:]
 model = ARIMA(train, order=(1, 1, 1))  
@@ -48,9 +39,9 @@ fitted = model.fit(disp=-1)
 
 # Forecast
 fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
-print(fc)
 # Make as pandas series
 fc_series = Series(fc, index=test.index)
+print(fc_series)
 lower_series = Series(conf[:, 0], index=test.index)
 upper_series = Series(conf[:, 1], index=test.index)
 
