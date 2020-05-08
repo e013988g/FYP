@@ -32,6 +32,7 @@ def getRecentDatabaseData():
     return json.dumps(line_items)
 
 series = read_json(getRecentDatabaseData())
+print(series)
 # plt.show()
 # model = ARIMA(series['reading'].values, order=(5,1,0))
 # model_fit = model.fit(disp=0)
