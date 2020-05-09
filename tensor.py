@@ -33,7 +33,7 @@ class CO2LinearRegression():
         
     def checkForAnomaly(self, reading):
         anomalyFound = False
-        series = read_json(getRecentDatabaseData())
+        series = read_json(self.getRecentDatabaseData())
         train = series['reading'][:200]
         test = series['reading'][200:]
         model = ARIMA(train, order=(1, 1, 1))  
