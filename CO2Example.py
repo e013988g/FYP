@@ -13,10 +13,10 @@ import threading
 
 def findAnomalies(CO2Reading, COReading):
     findCO2Anomaly = CO2LinearRegression();
-    findCO2Anomaly.checkForAnomaly(CO2Reading);
+    print(findCO2Anomaly.checkForAnomaly(CO2Reading));
     
     findCOAnomaly = COLinearRegression();
-    findCOAnomaly.checkForAnomaly(COReading);
+    print(findCOAnomaly.checkForAnomaly(COReading));
 try:
     CO2Trigerred = False
     PreviousTriggeredState = False
@@ -36,8 +36,8 @@ try:
             COPerc = mqCO.MQPercentage()
             sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
             sendDataToDb.insertCOReading(COPerc["CO"])
-            readingThread = threading.Thread(target=findAnomalies, args=(CO2Perc["SMOKE"], COPerc["CO"],))
-            readingThread.start()
+            anomalyThread = threading.Thread(target=findAnomalies, args=(CO2Perc["SMOKE"], COPerc["CO"],))
+            anomalyThread.start()
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
             sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"]), (COPerc["CO"])))
