@@ -30,7 +30,7 @@ def getRecentDatabaseData():
     conn.close()
     
     return json.dumps(line_items)
-def checkForAnomaly(reading, upper_series):
+def checkForAnomaly(reading):
     anomalyFound = False
     series = read_json(getRecentDatabaseData())
     train = series['reading'][:200]
@@ -57,4 +57,4 @@ def checkForAnomaly(reading, upper_series):
         if(reading > i):
             anomalyFound = True
     
-print(checkForAnomaly(100, upper_series))
+print(checkForAnomaly(100))
