@@ -1,5 +1,5 @@
 from findCO2Anomaly import *
-from threading import *
+import threading
 
 def runThread():
     linearRegression = CO2LinearRegression();
