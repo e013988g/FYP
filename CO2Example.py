@@ -12,7 +12,7 @@ import threading
 
 def findAnomalies():
     findCO2Anomaly = CO2LinearRegression();
-    findCO2Anomaly.checkForAnomaly(3000);
+    print(findCO2Anomaly.checkForAnomaly(3000));
 try:
     x = threading.Thread(target=findAnomalies)
     x.start()
