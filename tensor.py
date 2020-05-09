@@ -31,7 +31,8 @@ def getRecentDatabaseData():
     
     return json.dumps(line_items)
 def checkForAnomaly(reading, upper_series):
-    print("Test")
+    for i in upper_series:
+        print(i)
     
 series = read_json(getRecentDatabaseData())
 train = series['reading'][:200]
@@ -45,8 +46,6 @@ fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
 fc_series = Series(fc, index=test.index)
 lower_series = Series(conf[:, 0], index=test.index)
 upper_series = Series(conf[:, 1], index=test.index)
-print(lower_series)
-print(upper_series)
 # Plot
 plt.figure(figsize=(12,5), dpi=100)
 plt.plot(train, label='training')
@@ -56,4 +55,5 @@ plt.fill_between(lower_series.index, lower_series, upper_series,
                  color='k', alpha=.15)
 plt.title('Forecast vs Actuals')
 plt.legend(loc='upper left', fontsize=8)
-plt.show()
+# plt.show()
+checkForAnomaly(100, upper_series)
