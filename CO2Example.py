@@ -1,9 +1,13 @@
 from mqCO2 import *
 from mqCO import *
 from sendCO2Text import *
+from sendCO2AnomalyText import *
 from sendCO2Email import *
+from sendCO2AnomalyEmail import *
 from sendCOEmail import *
+from sendCOAnomalyEmail import *
 from sendCOText import *
+from sendCOAnomalyText import *
 from sendDataToDB import *
 from getNotificationSettings import *
 import sys, time, json
@@ -14,6 +18,14 @@ import threading
 def findAnomalies(CO2Reading, COReading):
     CO2AnomFound = False
     COAnomFound = False
+    notifs = getNotifications();
+    notifSettings = json.loads(notifs.getSettings())
+    sendText = notificationSettings[0]["sendText"]
+    sendEmail = notificationSettings[0]["sendEmail"]
+    CO2AnomText = sendCO2AnomalyText()
+    COAnomText = sendCOAnomalyText()
+    CO2AnomEmail = sendCO2AnomalyEmail()
+    COAnomEmail = sendCOAnomalyEmail()
     
     findCO2Anomaly = CO2LinearRegression();
     CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
@@ -22,14 +34,12 @@ def findAnomalies(CO2Reading, COReading):
     COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
     
     if CO2AnomFound == True:
-        print("CO2 Anomaly Found")
-    else:
-        print("No CO2 Anomalies Found.")
+        CO2AnomText.createClientMessage(sendText)
+        CO2AnomEmail.createEmail(sendEmail)
         
     if COAnomFound == True:
-        print("CO Anomaly Found")
-    else:
-        print("No CO Anomalies Found.")
+        COAnomText.createClientMessage(sendText)
+        COAnomEmail.createEmail(sendEmail)
     
 try:
     CO2Trigerred = False
@@ -48,7 +58,7 @@ try:
             
             CO2Perc = mqCO2.MQPercentage()
             COPerc = mqCO.MQPercentage()
-            sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
+            sendDataToDb.insertCO2Reading(3000)
             sendDataToDb.insertCOReading(COPerc["CO"])
             anomalyThread = threading.Thread(target=findAnomalies, args=(CO2Perc["SMOKE"], COPerc["CO"],))
             anomalyThread.start()
