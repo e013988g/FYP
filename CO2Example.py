@@ -12,11 +12,25 @@ from findCOAnomaly import *
 import threading
 
 def findAnomalies(CO2Reading, COReading):
+    CO2AnomFound = False
+    COAnomFound = False
+    
     findCO2Anomaly = CO2LinearRegression();
-    findCO2Anomaly.checkForAnomaly(CO2Reading);
+    CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
     
     findCOAnomaly = COLinearRegression();
-    findCOAnomaly.checkForAnomaly(COReading);
+    COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
+    
+    if CO2AnomFound == True:
+        print("CO2 Anomaly Found")
+    else:
+        print("No CO2 Anomalies Found.")
+        
+    if COAnomFound == True:
+        print("CO Anomaly Found")
+    else:
+        print("No CO Anomalies Found.")
+    
 try:
     CO2Trigerred = False
     PreviousTriggeredState = False
