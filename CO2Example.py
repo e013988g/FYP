@@ -8,14 +8,18 @@ from sendDataToDB import *
 from getNotificationSettings import *
 import sys, time, json
 from findCO2Anomaly import *
+from findCOAnomaly import *
 import threading
 
-def findAnomalies():
+def findAnomalies(CO2Reading, COReading):
     findCO2Anomaly = CO2LinearRegression();
-    print(findCO2Anomaly.checkForAnomaly(3000));
+    findCO2Anomaly.checkForAnomaly(CO2Reading);
+    
+    findCOAnomaly = COLinearRegression();
+    findCOAnomaly.checkForAnomaly(COReading);
 try:
-    x = threading.Thread(target=findAnomalies)
-    x.start()
+    CO2Thread = threading.Thread(target=findAnomalies, args=(CO2Reading, COReading,))
+    CO2Thread.start()
     CO2Trigerred = False
     PreviousTriggeredState = False
     COPreviousTriggeredState = False
