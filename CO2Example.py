@@ -13,10 +13,10 @@ import threading
 
 def findAnomalies(CO2Reading, COReading):
     findCO2Anomaly = CO2LinearRegression();
-    print(findCO2Anomaly.checkForAnomaly(CO2Reading));
+    findCO2Anomaly.checkForAnomaly(CO2Reading);
     
     findCOAnomaly = COLinearRegression();
-    print(findCOAnomaly.checkForAnomaly(COReading));
+    findCOAnomaly.checkForAnomaly(COReading);
 try:
     CO2Trigerred = False
     PreviousTriggeredState = False
