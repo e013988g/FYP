@@ -56,5 +56,6 @@ def checkForAnomaly(reading):
     for i in upper_series:
         if(reading > i):
             anomalyFound = True
+    return anomalyFound
     
 print(checkForAnomaly(100))
