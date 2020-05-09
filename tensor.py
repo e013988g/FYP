@@ -30,7 +30,9 @@ def getRecentDatabaseData():
     conn.close()
     
     return json.dumps(line_items)
-
+def checkForAnomaly(reading, upper_series):
+    if reading > upper_series:
+    
 series = read_json(getRecentDatabaseData())
 train = series['reading'][:200]
 test = series['reading'][200:]
@@ -41,10 +43,10 @@ fitted = model.fit(disp=-1)
 fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
 # Make as pandas series
 fc_series = Series(fc, index=test.index)
-print(fc_series)
 lower_series = Series(conf[:, 0], index=test.index)
 upper_series = Series(conf[:, 1], index=test.index)
-
+print(lower_series)
+print(upper_series)
 # Plot
 plt.figure(figsize=(12,5), dpi=100)
 plt.plot(train, label='training')
