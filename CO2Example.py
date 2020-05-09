@@ -8,6 +8,7 @@ from sendDataToDB import *
 from getNotificationSettings import *
 import sys, time, json
 from findCO2Anomaly import *
+import threading
 
 def findAnomalies():
     findCO2Anomaly = CO2LinearRegression();
