@@ -1,9 +1,7 @@
 from findCO2Anomaly import *
 import threading
 
-def runThread():
-    linearRegression = CO2LinearRegression();
-    print(linearRegression.checkForAnomaly(3500.45))
+linearRegression = CO2LinearRegression();
     
-x = threading.Thread(target=runThread)
+x = threading.Thread(target=linearRegression.checkForAnomaly(3500.45))
 x.start()

@@ -7,11 +7,13 @@ from sendCOText import *
 from sendDataToDB import *
 from getNotificationSettings import *
 import sys, time, json
+from findCO2Anomaly import *
 
 try:
     CO2Trigerred = False
     PreviousTriggeredState = False
     COPreviousTriggeredState = False
+    findCO2Anomaly = CO2LinearRegression();
     mqCO2 = MQCO2();
     mqCO = MQCO();
     sendDataToDb = insertReading();
