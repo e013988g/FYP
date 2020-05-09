@@ -60,7 +60,7 @@ try:
             COPerc = mqCO.MQPercentage()
             sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
             sendDataToDb.insertCOReading(COPerc["CO"])
-            anomalyThread = threading.Thread(target=findAnomalies, args=(3000, COPerc["CO"],))
+            anomalyThread = threading.Thread(target=findAnomalies, args=(CO2Perc["SMOKE"], COPerc["CO"],))
             anomalyThread.start()
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
