@@ -31,29 +31,30 @@ def getRecentDatabaseData():
     
     return json.dumps(line_items)
 def checkForAnomaly(reading, upper_series):
-    for i in upper_series:
-        print(i)
-    
-series = read_json(getRecentDatabaseData())
-train = series['reading'][:200]
-test = series['reading'][200:]
-model = ARIMA(train, order=(1, 1, 1))  
-fitted = model.fit(disp=-1)  
+    anomalyFound = False
+    series = read_json(getRecentDatabaseData())
+    train = series['reading'][:200]
+    test = series['reading'][200:]
+    model = ARIMA(train, order=(1, 1, 1))  
+    fitted = model.fit(disp=-1)  
 
-# Forecast
-fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
-# Make as pandas series
-fc_series = Series(fc, index=test.index)
-lower_series = Series(conf[:, 0], index=test.index)
-upper_series = Series(conf[:, 1], index=test.index)
-# Plot
-plt.figure(figsize=(12,5), dpi=100)
-plt.plot(train, label='training')
-plt.plot(test, label='actual')
-plt.plot(fc_series, label='forecast')
-plt.fill_between(lower_series.index, lower_series, upper_series, 
-                 color='k', alpha=.15)
-plt.title('Forecast vs Actuals')
-plt.legend(loc='upper left', fontsize=8)
-# plt.show()
-checkForAnomaly(100, upper_series)
+    # Forecast
+    fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
+    # Make as pandas series
+    fc_series = Series(fc, index=test.index)
+    lower_series = Series(conf[:, 0], index=test.index)
+    upper_series = Series(conf[:, 1], index=test.index)
+    # Plot
+    plt.figure(figsize=(12,5), dpi=100)
+    plt.plot(train, label='training')
+    plt.plot(test, label='actual')
+    plt.plot(fc_series, label='forecast')
+    plt.fill_between(lower_series.index, lower_series, upper_series, 
+                     color='k', alpha=.15)
+    plt.title('Forecast vs Actuals')
+    plt.legend(loc='upper left', fontsize=8)
+    for i in upper_series:
+        if(reading > i):
+            anomalyFound = True
+    
+print(checkForAnomaly(100, upper_series))
