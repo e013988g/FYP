@@ -20,8 +20,8 @@ def findAnomalies(CO2Reading, COReading):
     COAnomFound = False
     notifs = getNotifications();
     notifSettings = json.loads(notifs.getSettings())
-    sendText = notificationSettings[0]["sendText"]
-    sendEmail = notificationSettings[0]["sendEmail"]
+    sendText = notifSettings[0]["sendText"]
+    sendEmail = notifSettings[0]["sendEmail"]
     CO2AnomText = sendCO2AnomalyText()
     COAnomText = sendCOAnomalyText()
     CO2AnomEmail = sendCO2AnomalyEmail()
