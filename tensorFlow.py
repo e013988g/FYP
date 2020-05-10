@@ -45,6 +45,7 @@ def checkForAnomaly(reading):
     lower_series = Series(conf[:, 0], index=test.index)
     upper_series = Series(conf[:, 1], index=test.index)
     # Plot
+    print(upper_series)
     plt.figure(figsize=(12,5), dpi=100)
     plt.plot(train, label='training')
     plt.plot(test, label='actual')
