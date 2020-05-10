@@ -30,7 +30,7 @@ def getRecentDatabaseData(self):
         
         return json.dumps(line_items)
         
-def checkForAnomaly(self, reading):
+def checkForAnomaly(reading):
     anomalyFound = False
     series = read_json(self.getRecentDatabaseData())
     train = series['reading'][:100]
