@@ -38,7 +38,7 @@ class CO2LinearRegression():
         test = series['reading'][150:]
         model = ARIMA(train, order=(1, 1, 1))  
         fitted = model.fit(disp=-1)  
-
+        print(train)
         # Forecast
         fc, se, conf = fitted.forecast(150, alpha=0.05)  # 95% conf
         # Make as pandas series

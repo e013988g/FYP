@@ -30,8 +30,8 @@ def findAnomalies(CO2Reading, COReading):
     findCO2Anomaly = CO2LinearRegression();
     CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
     
-    findCOAnomaly = COLinearRegression();
-    COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
+    #findCOAnomaly = COLinearRegression();
+    #COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
     
     if CO2AnomFound == True:
         CO2AnomText.createClientMessage(sendText)
