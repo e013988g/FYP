@@ -33,9 +33,11 @@ def getRecentDatabaseData():
 def checkForAnomaly(reading):
     anomalyFound = False
     series = read_json(getRecentDatabaseData())
-    print(series)
     train = series['reading'][:100]
     test = series['reading'][100:]
+    print(train)
+    print("space")
+    print(test)
     model = ARIMA(train, order=(1, 1, 1))  
     fitted = model.fit(disp=-1)  
 
