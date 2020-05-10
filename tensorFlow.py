@@ -59,4 +59,4 @@ def checkForAnomaly(reading):
             anomalyFound = True
     return anomalyFound
 
-print(checkForAnomaly(460))
+print(checkForAnomaly(300))
