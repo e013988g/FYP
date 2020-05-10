@@ -15,7 +15,7 @@ def getRecentDatabaseData():
         line_items = []
         conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
         cursor = conn.cursor()
-        sql_text = "SELECT TOP 300 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DATEPART(dd,DateRegistered) = DATEPART(dd, GETDATE() - 7) AND DATEPART(hh, DateRegistered) = (DATEPART(hh, GETDATE()) + 1) ORDER BY DateRegistered ASC"
+        sql_text = "SELECT TOP 300 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DATEPART(dd,DateRegistered) = DATEPART(dd, GETDATE() - 7) AND DATEPART(hh, DateRegistered) = (DATEPART(hh, GETDATE())) ORDER BY DateRegistered ASC"
         cursor.execute(sql_text)
         row = cursor.fetchone()
         while row:
@@ -45,6 +45,7 @@ def checkForAnomaly(reading):
     lower_series = Series(conf[:, 0], index=test.index)
     upper_series = Series(conf[:, 1], index=test.index)
     # Plot
+    print(upper_series)
     plt.figure(figsize=(12,5), dpi=100)
     plt.plot(train, label='training')
     plt.plot(test, label='actual')
