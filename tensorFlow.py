@@ -20,7 +20,8 @@ def getRecentDatabaseData():
         row = cursor.fetchone()
         while row:
             jsonObject = {
-                    'reading': float(row[0])
+                    'reading': float(row[0]),
+                    'dateReg': str(row[1])
                 }
             line_items.append(jsonObject)
             row = cursor.fetchone()
@@ -32,14 +33,13 @@ def getRecentDatabaseData():
 def checkForAnomaly(reading):
     anomalyFound = False
     series = read_json(getRecentDatabaseData())
-    train = series['reading'][:100]
-    test = series['reading'][100:]
-    
+    train = series['reading'][:200]
+    test = series['reading'][200:]
     model = ARIMA(train, order=(1, 1, 1))  
     fitted = model.fit(disp=-1)  
 
     # Forecast
-    fc, se, conf = model.forecast(100, alpha=0.05)  # 95% conf
+    fc, se, conf = fitted.forecast(200, alpha=0.05)  # 95% conf
     # Make as pandas series
     fc_series = Series(fc, index=test.index)
     lower_series = Series(conf[:, 0], index=test.index)
