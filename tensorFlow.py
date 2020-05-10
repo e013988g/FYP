@@ -35,27 +35,27 @@ def checkForAnomaly(reading):
     train = series['reading'][:100]
     test = series['reading'][100:]
     
-    model = ARIMA(train, order=(4, 2, 1))  
-    fitted = model.fit(disp=-1)  
+    model = ARIMA(train, order=(1, 1, 1))  
+    #fitted = model.fit(disp=-1)  
 
     # Forecast
-#     fc, se, conf = fitted.forecast(100, alpha=0.05)  # 95% conf
-#     # Make as pandas series
-#     fc_series = Series(fc, index=test.index)
-#     lower_series = Series(conf[:, 0], index=test.index)
-#     upper_series = Series(conf[:, 1], index=test.index)
-#     # Plot
-#     plt.figure(figsize=(12,5), dpi=100)
-#     plt.plot(train, label='training')
-#     plt.plot(test, label='actual')
-#     plt.plot(fc_series, label='forecast')
-#     plt.fill_between(lower_series.index, lower_series, upper_series, 
-#                      color='k', alpha=.15)
-#     plt.title('Forecast vs Actuals')
-#     plt.legend(loc='upper left', fontsize=8)
-#     for i in upper_series:
-#         if(reading > i):
-#             anomalyFound = True
+    fc, se, conf = model.forecast(100, alpha=0.05)  # 95% conf
+    # Make as pandas series
+    fc_series = Series(fc, index=test.index)
+    lower_series = Series(conf[:, 0], index=test.index)
+    upper_series = Series(conf[:, 1], index=test.index)
+    # Plot
+    plt.figure(figsize=(12,5), dpi=100)
+    plt.plot(train, label='training')
+    plt.plot(test, label='actual')
+    plt.plot(fc_series, label='forecast')
+    plt.fill_between(lower_series.index, lower_series, upper_series, 
+                     color='k', alpha=.15)
+    plt.title('Forecast vs Actuals')
+    plt.legend(loc='upper left', fontsize=8)
+    for i in upper_series:
+        if(reading > i):
+            anomalyFound = True
     return anomalyFound
 
 print(checkForAnomaly(460))
