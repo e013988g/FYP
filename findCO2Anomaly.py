@@ -35,7 +35,6 @@ class CO2LinearRegression():
         anomalyFound = False
         series = read_json(self.getRecentDatabaseData())
         train = series['reading'][:100]
-        print(train)
         test = series['reading'][100:]
         model = ARIMA(train, order=(1, 1, 1))  
         fitted = model.fit(disp=-1)  
