@@ -25,7 +25,7 @@ class sendCO2AnomalyEmail():
                     }
                   ],
                   "Subject": "CO2 level higher than usual!",
-                  "TextPart": "Your carbon dioxide readings are higher than usual, but still within a safe level." + date_time,
+                  "TextPart": "Your carbon dioxide readings are higher than this time last week." + date_time,
                   "HTMLPart": ""
                 }
               ]
