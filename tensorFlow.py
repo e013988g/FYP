@@ -15,13 +15,12 @@ def getRecentDatabaseData():
         line_items = []
         conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
         cursor = conn.cursor()
-        sql_text = "SELECT TOP 200 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DATEPART(dd,DateRegistered) = DATEPART(dd, GETDATE() - 7) AND DATEPART(hh, DateRegistered) = (DATEPART(hh, GETDATE()) + 1) ORDER BY DateRegistered DESC"
+        sql_text = "SELECT TOP 200 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DATEPART(dd,DateRegistered) = DATEPART(dd, GETDATE() - 7) AND DATEPART(hh, DateRegistered) = (DATEPART(hh, GETDATE()) + 1) ORDER BY DateRegistered ASC"
         cursor.execute(sql_text)
         row = cursor.fetchone()
         while row:
             jsonObject = {
-                    'reading': float(row[0]),
-                    'dateReg': str(row[1])
+                    'reading': float(row[0])
                 }
             line_items.append(jsonObject)
             row = cursor.fetchone()
