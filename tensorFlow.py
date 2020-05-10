@@ -33,13 +33,13 @@ def getRecentDatabaseData():
 def checkForAnomaly(reading):
     anomalyFound = False
     series = read_json(getRecentDatabaseData())
-    train = series['reading'][:150]
-    test = series['reading'][150:]
+    train = series['reading'][:110]
+    test = series['reading'][110:]
     model = ARIMA(train, order=(1, 1, 1))  
     fitted = model.fit(disp=-1)  
 
     # Forecast
-    fc, se, conf = fitted.forecast(150, alpha=0.05)  # 95% conf
+    fc, se, conf = fitted.forecast(110, alpha=0.05)  # 95% conf
     # Make as pandas series
     fc_series = Series(fc, index=test.index)
     lower_series = Series(conf[:, 0], index=test.index)
