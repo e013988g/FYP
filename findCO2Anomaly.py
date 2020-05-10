@@ -16,7 +16,7 @@ class CO2LinearRegression():
         line_items = []
         conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
         cursor = conn.cursor()
-        sql_text = "SELECT TOP 200 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DATEPART(dd,DateRegistered) = DATEPART(dd, GETDATE() - 7) AND DATEPART(hh, DateRegistered) = (DATEPART(hh, GETDATE()) + 2) ORDER BY DateRegistered ASC"
+        sql_text = "SELECT TOP 200 ReadingPPM, DateRegistered FROM CO2_Readings WHERE DATEPART(dd,DateRegistered) = DATEPART(dd, GETDATE() - 7) AND DATEPART(hh, DateRegistered) = (DATEPART(hh, GETDATE()) + 1) ORDER BY DateRegistered ASC"
         cursor.execute(sql_text)
         row = cursor.fetchone()
         while row:
