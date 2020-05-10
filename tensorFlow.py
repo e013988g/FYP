@@ -35,7 +35,7 @@ def checkForAnomaly(reading):
     train = series['reading'][:100]
     test = series['reading'][100:]
 
-    model = ARIMA(train, order=(1, 1, 0))  
+    model = ARIMA(train, order=(1, 1, 1))  
     fitted = model.fit(disp=-1)  
 
     # Forecast
