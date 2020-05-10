@@ -11,7 +11,7 @@ from pandas import DataFrame
 from pandas import Series
 from statsmodels.tsa.arima_model import ARIMA
 from statsmodels.tsa.stattools import adfuller
-def getRecentDatabaseData(self):
+def getRecentDatabaseData():
         line_items = []
         conn = pyodbc.connect('DRIVER=FreeTDS;SERVER=e013988g.database.windows.net;PORT=1433;DATABASE=learpfyp;UID=e013988g;PWD=lukefyp2020!;TDS_Version=8.0;')
         cursor = conn.cursor()
@@ -32,7 +32,7 @@ def getRecentDatabaseData(self):
         
 def checkForAnomaly(reading):
     anomalyFound = False
-    series = read_json(self.getRecentDatabaseData())
+    series = read_json(getRecentDatabaseData())
     train = series['reading'][:100]
     test = series['reading'][100:]
     model = ARIMA(train, order=(1, 1, 1))  
