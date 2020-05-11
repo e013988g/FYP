@@ -27,8 +27,8 @@ def findAnomalies(CO2Reading, COReading):
     CO2AnomEmail = sendCO2AnomalyEmail()
     COAnomEmail = sendCOAnomalyEmail()
     
-    #findCO2Anomaly = CO2LinearRegression();
-    #CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
+    findCO2Anomaly = CO2LinearRegression();
+    CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
 
     findCOAnomaly = COLinearRegression();
     COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
