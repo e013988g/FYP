@@ -74,7 +74,7 @@ try:
             anomalyThread.start()
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
-            sys.stdout.write("[CO2: %g ppm, Forecasted Reading: , Upper Forecast: %g], [CO: %g ppm, Forecasted Reading: , Upper Forecast: ]" % ((CO2Perc["SMOKE"]), upperCO2Forecast, (COPerc["CO"])))
+            sys.stdout.write("[CO2: %g ppm, Forecasted Reading: %g, Upper Forecast: %g], [CO: %g ppm, Forecasted Reading: , Upper Forecast: ]" % ((CO2Perc["SMOKE"]), CO2Forecast, upperCO2Forecast, (COPerc["CO"])))
             sys.stdout.flush()
             time.sleep(15)
             notificationSettings = json.loads(notifications.getSettings())
