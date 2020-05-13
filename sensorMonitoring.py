@@ -24,7 +24,9 @@ def findAnomalies(CO2Reading, COReading):
     global anomalyCheckCount
     global upperCO2Forecast
     global CO2Forecast
-
+    global upperCOForecast
+    global COForecast
+    
     if anomalyCheckCount == 4:
         CO2AnomFound = False
         COAnomFound = False
