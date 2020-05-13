@@ -45,7 +45,7 @@ def findAnomalies(CO2Reading, COReading):
 #             COAnomText.createClientMessage(sendText)
 #             COAnomEmail.createEmail(sendEmail)
 #     
-    anomalyCheckCount++
+    anomalyCheckCount = anomalyCheckCount + 1
     
 try:
     CO2Trigerred = False
