@@ -64,7 +64,7 @@ class CO2LinearRegression():
             forecastCount = upperCount + 1
             forecastTotal = upperTotal + i
             
-            forecastAverage = forecastTotal/forecastCount
+        forecastAverage = forecastTotal/forecastCount
         
         for i in upper_series:
             upperCount = upperCount + 1

@@ -33,6 +33,12 @@ class COLinearRegression():
         
     def checkForAnomaly(self, reading):
         anomalyFound = False
+        upperTotal = 0
+        forecastTotal = 0
+        upperCount = 0
+        forecastCount = 0
+        upperAverage = 0
+        forecastAverage = 0
         series = read_json(self.getRecentDatabaseData())
         train = series['reading'][:100]
         test = series['reading'][100:]
@@ -54,7 +60,20 @@ class COLinearRegression():
                          color='k', alpha=.15)
         plt.title('Forecast vs Actuals')
         plt.legend(loc='upper left', fontsize=8)
+        
+        for i in fc_series:
+            forecastCount = upperCount + 1
+            forecastTotal = upperTotal + i
+            
+        
+        forecastAverage = forecastTotal/forecastCount
+            
         for i in upper_series:
+            upperCount = upperCount + 1
+            upperTotal = upperTotal + i
             if(reading > i):
                 anomalyFound = True
-        return anomalyFound
+                
+        upperAverage = upperTotal/upperCount
+
+        return anomalyFound, forecastAverage, upperAverage

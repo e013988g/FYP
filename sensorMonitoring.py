@@ -18,6 +18,8 @@ import threading
 anomalyCheckCount = 1
 upperCO2Forecast = 0
 CO2Forecast = 0
+upperCOForecast = 0
+COForecast = 0
 def findAnomalies(CO2Reading, COReading):
     global anomalyCheckCount
     global upperCO2Forecast
@@ -38,8 +40,8 @@ def findAnomalies(CO2Reading, COReading):
         findCO2Anomaly = CO2LinearRegression();
         CO2AnomFound, CO2Forecast, upperCO2Forecast = findCO2Anomaly.checkForAnomaly(CO2Reading);
 
-#         findCOAnomaly = COLinearRegression();
-#         COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
+        findCOAnomaly = COLinearRegression();
+        COAnomFound, COForecast, upperCOForecast = findCOAnomaly.checkForAnomaly(COReading);
         
         if CO2AnomFound == True:
             CO2AnomText.createClientMessage(sendText)
@@ -74,7 +76,7 @@ try:
             anomalyThread.start()
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
-            sys.stdout.write("[CO2: %g ppm, Forecasted Reading: %g, Upper Forecast: %g], [CO: %g ppm, Forecasted Reading: , Upper Forecast: ]" % ((CO2Perc["SMOKE"]), CO2Forecast, upperCO2Forecast, (COPerc["CO"])))
+            sys.stdout.write("[CO2: %g ppm, Forecasted Reading: %g, Upper Forecast: %g], [CO: %g ppm, Forecasted Reading: %g, Upper Forecast: %g]" % ((CO2Perc["SMOKE"]), CO2Forecast, upperCO2Forecast, (COPerc["CO"]), COForecast, upperCOForecast))
             sys.stdout.flush()
             time.sleep(15)
             notificationSettings = json.loads(notifications.getSettings())
