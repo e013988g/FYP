@@ -60,6 +60,11 @@ class CO2LinearRegression():
         plt.title('Forecast vs Actuals')
         plt.legend(loc='upper left', fontsize=8)
         
+        for i in fc_series:
+            forecastCount = upperCount + 1
+            forecastTotal = upperTotal + i
+            
+            forecastAverage = forecastTotal/forecastCount
         
         for i in upper_series:
             upperCount = upperCount + 1
@@ -68,4 +73,4 @@ class CO2LinearRegression():
                 anomalyFound = True
                 
         upperAverage = upperTotal/upperCount
-        return anomalyFound, upperAverage
+        return anomalyFound, forecastAverage, upperAverage

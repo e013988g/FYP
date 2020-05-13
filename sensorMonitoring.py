@@ -17,9 +17,12 @@ import threading
 
 anomalyCheckCount = 1
 upperCO2Forecast = 0
+CO2Forecast = 0
 def findAnomalies(CO2Reading, COReading):
     global anomalyCheckCount
     global upperCO2Forecast
+    global CO2Forecast
+
     if anomalyCheckCount == 4:
         CO2AnomFound = False
         COAnomFound = False
@@ -33,7 +36,7 @@ def findAnomalies(CO2Reading, COReading):
         COAnomEmail = sendCOAnomalyEmail()
         
         findCO2Anomaly = CO2LinearRegression();
-        CO2AnomFound, upperCO2Forecast = findCO2Anomaly.checkForAnomaly(CO2Reading);
+        CO2AnomFound, CO2Forecast, upperCO2Forecast = findCO2Anomaly.checkForAnomaly(CO2Reading);
 
 #         findCOAnomaly = COLinearRegression();
 #         COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
@@ -45,7 +48,8 @@ def findAnomalies(CO2Reading, COReading):
         if COAnomFound == True:
             COAnomText.createClientMessage(sendText)
             COAnomEmail.createEmail(sendEmail)
-    
+        anomalyCheckCount = 1
+        
     anomalyCheckCount = anomalyCheckCount + 1
     
 try:
