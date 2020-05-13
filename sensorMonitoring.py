@@ -31,20 +31,20 @@ def findAnomalies(CO2Reading, COReading):
         CO2AnomEmail = sendCO2AnomalyEmail()
         COAnomEmail = sendCOAnomalyEmail()
         
-#         findCO2Anomaly = CO2LinearRegression();
-#         CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
-# 
-#         findCOAnomaly = COLinearRegression();
-#         COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
-#         
-#         if CO2AnomFound == True:
-#             CO2AnomText.createClientMessage(sendText)
-#             CO2AnomEmail.createEmail(sendEmail)
-#             
-#         if COAnomFound == True:
-#             COAnomText.createClientMessage(sendText)
-#             COAnomEmail.createEmail(sendEmail)
-#     
+        findCO2Anomaly = CO2LinearRegression();
+        CO2AnomFound = findCO2Anomaly.checkForAnomaly(CO2Reading);
+
+        findCOAnomaly = COLinearRegression();
+        COAnomFound = findCOAnomaly.checkForAnomaly(COReading);
+        
+        if CO2AnomFound == True:
+            CO2AnomText.createClientMessage(sendText)
+            CO2AnomEmail.createEmail(sendEmail)
+            
+        if COAnomFound == True:
+            COAnomText.createClientMessage(sendText)
+            COAnomEmail.createEmail(sendEmail)
+    
     anomalyCheckCount = anomalyCheckCount + 1
     
 try:
@@ -65,12 +65,11 @@ try:
             COPerc = mqCO.MQPercentage()
             sendDataToDb.insertCO2Reading(CO2Perc["SMOKE"])
             sendDataToDb.insertCOReading(COPerc["CO"])
-            print(anomalyCheckCount)
             anomalyThread = threading.Thread(target=findAnomalies, args=(CO2Perc["SMOKE"], COPerc["CO"],))
             anomalyThread.start()
             sys.stdout.write("\r")
             sys.stdout.write("\033[K")
-            sys.stdout.write("CO2: %g ppm, CO: %g ppm" % ((CO2Perc["SMOKE"]), (COPerc["CO"])))
+            sys.stdout.write("[CO2: %g ppm, Forecasted Reading: , Upper Forecast: ], [CO: %g ppm, Forecasted Reading: , Upper Forecast: ]" % ((CO2Perc["SMOKE"]), (COPerc["CO"])))
             sys.stdout.flush()
             time.sleep(15)
             notificationSettings = json.loads(notifications.getSettings())
