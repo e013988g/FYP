@@ -8,24 +8,24 @@ class sendCO2AnomalyEmail():
         if sendEmail > 0:
             now = datetime.now()
             date_time = now.strftime("%m/%d/%Y, %H:%M:%S")
-            api_key = 'ce9426e7bb33fe2fc0ebf344f67d7a38'
-            api_secret = 'e860031699212a48d2b2d2972b3a56b8'
+            api_key = 'a2f01e3d78fe1648ec67a88cdbdc4be5'
+            api_secret = 'da007df5625c3780cfec835fd320589d'
             mailjet = Client(auth=(api_key, api_secret), version='v3.1')
             data = {
               'Messages': [
                 {
                   "From": {
-                    "Email": "lukeearpp98@outlook.com",
+                    "Email": "e013988g@gmail.com",
                     "Name": "Luke"
                   },
                   "To": [
                     {
-                      "Email": "lukeearp98@outlook.com",
+                      "Email": "e013988g@gmail.com",
                       "Name": "Luke"
                     }
                   ],
                   "Subject": "CO2 level higher than usual!",
-                  "TextPart": "Your carbon dioxide readings are higher than this time last week." + date_time,
+                  "TextPart": "Your carbon dioxide readings have increased within the last hour." + date_time,
                   "HTMLPart": ""
                 }
               ]
