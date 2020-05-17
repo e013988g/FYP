@@ -44,7 +44,7 @@ class MQCO2():
                                             # to the original curve.
                                             # data format:[ x, y, slope]; point1: (lg200, 0.53), point2: (lg10000,  -0.22)  
                 
-        self.Ro = 14    
+        self.Ro = 15    
     
     def MQPercentage(self):
         val = {}
