@@ -15,7 +15,7 @@ from findCO2Anomaly import *
 from findCOAnomaly import *
 import threading
 
-anomalyCheckCount = 1
+anomalyCheckCount = 4
 upperCO2Forecast = 0
 CO2Forecast = 0
 upperCOForecast = 0
